@@ -1,0 +1,1 @@
+The `/services` folder contain any helper functions that may be shared across multiple components (i.e. logic to connect to and communicate with the API or helpers related to translation or calculating stuff).

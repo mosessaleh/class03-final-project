@@ -1,0 +1,1 @@
+The `/styles` folder can be used to store all of your stylesheets. This particular folder is not mandatory though, as many React developers will prefer to keep css files within the individual component folders. It is a matter of preference and you can choose to do either as long as you do it in a consistent way.
