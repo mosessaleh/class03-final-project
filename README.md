@@ -7,23 +7,25 @@ Note that the project is split into two sub-projects. One for the [client](/clie
 
 ### First iteration
 
-When I find interesting content I need to be able to share it so others can benefit.
+1A: When I find interesting content I need to be able to share it so others can benefit.
 
-When I feel like learning something new I need to discover content so that I can learn.
+1B: When I feel like learning something new I need to discover content so that I can learn.
 
-When I am selecting what content to read I need to see ratings so I don’t waste time on poor content.
-
-When I find a good learning resource shared by another user, I want to be able endorse (upvote) it, so others can make qualified decisions about what to read.
-
-When I have selected an item I need to be able to learn more before I read it in full length so I don’t waste time on the wrong content.
-
-When I have decided on a piece of content to read/watch I need to be able to go to it directly so I know for sure I am watching the right content.
+1C: When I have selected an item I need to be able to learn more before I read it in full length so I don’t waste time on the wrong content.
 
 ### Second iteration
 
-When I want to explore a specific topic I need to see a list of categories related to that topic so I don’t manually have to browse all of the content.
+2A: When I am selecting what content to read I need to see ratings so I don’t waste time on poor content.
 
-When I am browsing a topic I need to be able to find content that match my current skill level so that don’t get overwhelmed.
+2B: When I find a good learning resource shared by another user, I want to be able endorse (upvote) it, so others can make qualified decisions about what to read.
+
+2C: When I have decided on a piece of content to read/watch I need to be able to go to it directly so I know for sure I am watching the right content.
+
+### Third iteration
+
+3A: When I want to explore a specific topic I need to see a list of categories related to that topic so I don’t manually have to browse all of the content.
+
+3B: When I am browsing a topic I need to be able to find content that match my current skill level so that don’t get overwhelmed.
 
 ## Process
 
