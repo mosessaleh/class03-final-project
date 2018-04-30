@@ -55,7 +55,7 @@ To hand in and get feedback on your iterations you must follow this process for 
 - In the github interface find your personal branch and make a pull request towards the `iteration-1` branch. Share the link with your team member(s) and ask for feedback.
 - All team members should read through pull requests from other members and do as much as they can in terms of asking questions and researching in order to understand what other members have done. The team memebers should perform a review and either approve or request changes to the code before it can be merged.
 - Once the other team members have reviewed the pull request, go to the github interface and merge the pull request.
-- Once you have an iteration ready and need feedback from the mentors, make sure all work is merged to the `iteration-1` branch and then create a pull request towards the `master` branch. Send the link to the mentors.
+- Once you have an iteration ready and need feedback from the mentors, make sure all work is merged to the `iteration-1` branch and then create a pull request towards the `master` branch. Post the pull request link in the main Slack channel.
 
 To get feedback before a sunday session, pull requests must be created saturday at midnight the latest.
 
