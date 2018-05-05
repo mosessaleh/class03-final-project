@@ -1,4 +1,4 @@
-# Server 
+# Server
 *Assignment* In this folder your task is to set up a basic API-server in Express that will talk to a MySQL database.
 
 If you are looking for the React client you need to look in [this folder](../client)
@@ -21,22 +21,31 @@ From MySQL workbench (or your favourite mysql admin tool):
   create user 'test'@'localhost' identified by 'test';
   grant all on hyf_dev.* to 'test'@'localhost';
 
-### connecting to the database ###
+### Connecting to the database ###
 
-Edit the connection info in knexfile.js to the user you just created.
+Create a new file called `.env` in the `/server` folder (that's the full filename, starts with a dot and no extension) paste the following template in that file:
+
+```
+DB_NAME=[name of your database]
+DB_USER=[name of your database user]
+DB_PASSWORD=[password for database user]
+```
+
+Now replace the text in brackets `[]` with the data you used to create
+a database in MySQL above.
+
+The `.env` file is ignored by git and must be recreated on any computer running the project. This is on purpose to make sure passwords don't end up on github.
+
+### Updating the database using knex  #
+
+- `knex migrate:latest`
+- `knex seed:run`
 
 
-### updating the database using knex  #
 
--  knex migrate:latest
-- knex seed:run
-
-
-
-### starting the server ###
+### Starting the server ###
 - `npm start` starts the server.
 
 Now the server should run on http://localhost:3001
 
 HINT: take a look at http://localhost:3001/categories and ./routes/categories.js
-
