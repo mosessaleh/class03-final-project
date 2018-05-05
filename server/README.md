@@ -49,3 +49,13 @@ The `.env` file is ignored by git and must be recreated on any computer running 
 Now the server should run on http://localhost:3001
 
 HINT: take a look at http://localhost:3001/categories and ./routes/categories.js
+
+### Running on a custom port
+
+By default the server runs on port `:3001`. If you have other things running on
+the port and need to change this (for example to `:4001`) you can add the
+following line to your `.env` file:
+
+```
+PORT=4001
+```
