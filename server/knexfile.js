@@ -3,55 +3,21 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').load();
 }
 
-// Update with your config settings.
-
+// Do not put your database credentials directly in this
+// file as it will be visible on github!
+// Check the readme-file for details.
 module.exports = {
-  development: {
-    client: 'mysql',
-    connection: {
-      database: process.env.DB_NAME,
-      user:     process.env.DB_USER,
-      password: process.env.DB_PASSWORD
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: 'knex_migrations'
-    }
+  client: 'mysql',
+  connection: {
+    database: process.env.DB_NAME,
+    user:     process.env.DB_USER,
+    password: process.env.DB_PASSWORD
   },
-
- staging: {
-    client: 'mysql',
-    connection: {
-      database: 'hyf_staging',
-      user:     'test',
-      password: 'test'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: 'knex_migrations'
-    }
+  pool: {
+    min: 2,
+    max: 10
   },
-
-  production: {
-    client: 'mysql',
-    connection: {
-      database: 'hyf',
-      user:     'test',
-      password: 'test'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: 'knex_migrations'
-    }
+  migrations: {
+    tableName: 'knex_migrations'
   }
-
 };
