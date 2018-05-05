@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "nodemon ./bin/www",
     "test": "tap ./test/*.js"
   },
   "dependencies": {
@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "knex": "^0.14.6",
+    "nodemon": "^1.17.3",
     "tap": "^11.1.4"
   }
 }
