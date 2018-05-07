@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import Categories from '../../components/Categories';
+import { BrowserRouter, Route, Switch} from 'react-router-dom';
 import './../../styles/App.css';
 
+import Home from './../../Routes/Home';
+import Categories from './../../components/Categories';
 
 // Just some contents
 // one more
@@ -16,14 +17,18 @@ class App extends Component {
   componentDidMount() {
     fetch('/categories')
     .then(res => res.json())
-    .then(items => this.setState({ categories: items }))
-}
+    .then(items => this.setState({categories: items}));
+  }
   render() {
     return (
-      
-      <div className="App">
-        <Categories itemsList={this.state.categories}/>
-      </div>
+      <BrowserRouter>
+        <Switch>
+            <div className='container'>
+              <Route path='/' exact render={props => <Home catLength={this.state.categories.length}/>} />
+              <Route path='/categories' exact render={props => <Categories itemsList={this.state.categories}/>} />
+            </div>
+        </Switch>
+    </BrowserRouter>
     );
   }
 }
