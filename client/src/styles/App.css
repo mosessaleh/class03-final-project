@@ -45,6 +45,33 @@ body {
 .catItem:hover {
   background-color: #ddd;
 }
+.addForm {
+  width: 100%;
+}
+.addForm>table {
+  width: 100%;
+}
+.addForm>table>tbody>tr>td {
+  width: 35%;
+  font-size: 30px; 
+  line-height: 60px; 
+}
+.addForm>input {
+  font-size: 20px;
+  line-height: 50px;
+  width: 100%;
+  margin: 0 auto;
+}
+.addForm>table>tbody>tr>td>textarea {
+  width:85%;
+  height: 100px;
+  resize: none;
+}
+.addForm>table>tbody>tr>td>input,
+.addForm>table>tbody>tr>td>select
+{
+  font-size: 30px;
+}
 @media only screen and (max-width: 867px) {
   .container {
     width: 100%;

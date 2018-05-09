@@ -1,8 +1,12 @@
 import React from 'react';
 
 
+
 export default function AboutUs() {
     return (
-        <h1>About us</h1>
+        <div className="container">
+            <center><h1>About us</h1></center>
+            
+        </div>
     )
 }

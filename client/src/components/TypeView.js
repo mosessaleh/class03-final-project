@@ -7,7 +7,9 @@ export default class TypeView extends React.Component {
     } 
     render() {
         return (
-            <h2>This is: {this.props.match.params.type}</h2>
+            <div className="container">
+                <h2>This is: {this.props.match.params.type}</h2>
+            </div>
         )
     }
 }

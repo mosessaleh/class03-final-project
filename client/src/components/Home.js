@@ -5,7 +5,7 @@ import CatItem from './CatItem';
 export default class Home extends React.Component {
     render () {
         return (
-            <div>
+            <div className="container">
                 <center>
                     <h1>Welcome</h1>
                     <p>Please select your category.</p>
