@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch} from 'react-router-dom';
+import { BrowserRouter, Link, Route, Router, Switch} from 'react-router-dom';
 import './../../styles/App.css';
 
-import Home from './../../Routes/Home';
+import Home from './../../components/Home';
 import Categories from './../../components/Categories';
+import AboutUs from './../../components/AboutUs';
+import TypeView from './../../components/TypeView';
 
 // Just some contents
 // one more
@@ -20,15 +22,29 @@ class App extends Component {
     .then(items => this.setState({categories: items}));
   }
   render() {
+    
     return (
-      <BrowserRouter>
-        <Switch>
-            <div className='container'>
-              <Route path='/' exact render={props => <Home catLength={this.state.categories.length}/>} />
-              <Route path='/categories' exact render={props => <Categories itemsList={this.state.categories}/>} />
+        <div className='nav'>
+          
+          <BrowserRouter> 
+            <div>
+              <ul className='navItems'>  
+                <Link className='listItem' to='/'>Home</Link>
+                <Link className='listItem' to='/addContent'>Add new content</Link>
+                <Link className='listItem' to='/categories'>All contents</Link>
+                <Link className='listItem' to='/aboutUs'>About us</Link>
+              </ul>
+              <Switch>
+                <div className='container'>
+                  <Route path='/' exact render={(props) => <Home {...props} catLength={this.state.categories.length}/>} />
+                  <Route path='/categories' exact render={(props) => <Categories {...props} itemsList={this.state.categories}/>} />
+                  <Route path='/aboutUs' exact render={(props) => <AboutUs {...props} />}/>
+                  <Route path='/categories/:type' exact render={(props) => <TypeView {...props} />}/>
+                </div>
+              </Switch>
             </div>
-        </Switch>
-    </BrowserRouter>
+          </BrowserRouter>
+      </div>
     );
   }
 }
