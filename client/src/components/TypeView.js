@@ -37,8 +37,8 @@ export default class TypeView extends React.Component {
                                             </tr>
                                             <tr>
                                                 <td>30</td>
-                                                <td>8</td>
-                                                <td>4</td>
+                                                <td>{item.voteUp}</td>
+                                                <td>{item.voteDown}</td>
                                             </tr>
                                         </tbody>
                                     </table>

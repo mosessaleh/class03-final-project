@@ -21,4 +21,29 @@ router.get('/:type/:id', function (req, res, next) {
     res.send(data);
   });
 });
+router.post('/:type/:id', function(req, res, next) {
+  const id = req.params.id;
+  var data = req.body.like;
+  if (data == 'likeIt') {
+     knex('categories')
+    .where('id', id)
+    .update({
+      voteUp: req.body.vote + 1,
+      thisKeyIsSkipped: undefined
+    }).then( function (result) {
+      res.json({ success: true});
+    })
+  }
+  if (data == 'unlikeIt') {
+     knex('categories')
+    .where('id', id)
+    .update({
+      voteDown: req.body.vote + 1,
+      thisKeyIsSkipped: undefined
+    }).then( function (result) {
+      res.json({ success: true});
+    })
+  }
+  
+});
 module.exports = router;
