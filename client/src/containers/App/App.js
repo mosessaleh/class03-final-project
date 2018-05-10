@@ -7,6 +7,7 @@ import Categories from './../../components/Categories';
 import AboutUs from './../../components/AboutUs';
 import TypeView from './../../components/TypeView';
 import AddContent from './../../components/AddContent';
+import CategoryView from './../../components/CategoryView';
 
 // Just some contents
 // one more
@@ -41,6 +42,7 @@ class App extends Component {
                 <Route path='/categories' exact render={(props) => <Categories {...props} itemsList={this.state.categories}/>} />
                 <Route path='/aboutUs' exact render={(props) => <AboutUs {...props} />}/>
                 <Route path='/categories/:type' exact render={(props) => <TypeView {...props} />}/>
+                <Route path='/categories/:type/:id' exact render={(props) => <CategoryView {...props} />}/>
             </Switch>
           </div>
         </BrowserRouter>

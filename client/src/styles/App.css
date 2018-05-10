@@ -72,6 +72,38 @@ body {
 {
   font-size: 30px;
 }
+.categoryDiv {
+  width:100%;
+  background-color: #fff;
+  border: 1px solid #000;
+  height: 15vh;
+  padding: 15px;
+  margin: 5px;
+  line-height: 20px;
+  border-radius: 10px;
+}
+.leftDiv {
+  float: left;
+  width: 60%;
+  height: 10vh;
+  border-right: 1px solid rgb(131, 129, 129);
+}
+.rightDiv {
+  float: right;
+  width: 39%;
+  height: 10vh;
+  border-left: 1px solid rgb(131, 129, 129);
+}
+.rightDiv>table {
+  width: 100%;
+}
+.rightDiv>table>tbody>tr>td {
+  width: 30%;
+  text-align: center;
+}
+
+
+
 @media only screen and (max-width: 867px) {
   .container {
     width: 100%;
