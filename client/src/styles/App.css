@@ -82,6 +82,9 @@ body {
   line-height: 20px;
   border-radius: 10px;
 }
+.categoryDiv:hover {
+  background-color: #ddd;
+}
 .leftDiv {
   float: left;
   width: 60%;

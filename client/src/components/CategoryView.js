@@ -40,7 +40,6 @@ export default class CategoryView extends React.Component {
         }).catch(function(err) {
             console.log(err)
         });
-        
     }
     likeIt() {
         this.like({like:'likeIt',vote:this.state.item[0].voteUp});
@@ -50,6 +49,7 @@ export default class CategoryView extends React.Component {
         this.like({like:'unlikeIt',vote:this.state.item[0].voteDown});
         this.componentDidMount();  
     }
+
     render() {
         return(
             <div className='container'>
