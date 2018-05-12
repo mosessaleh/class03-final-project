@@ -13,6 +13,8 @@ export default class CategoryView extends React.Component {
         this.like = this.like.bind(this);
         this.likeIt = this.likeIt.bind(this);
         this.unLikeIt = this.unLikeIt.bind(this);
+        this.isReaded = this.isReaded.bind(this);
+        
     }
     componentDidMount() {
         var id = this.props.match.params.id;
@@ -20,6 +22,10 @@ export default class CategoryView extends React.Component {
         fetch('/categories/'+type+'/'+id)
         .then(res => res.json())
         .then(item1 => this.setState({item: item1}))
+        
+    }
+    componentWillUnmount() {
+        this.isReaded();
     }
     like(send) {
         var id = this.props.match.params.id;
@@ -40,6 +46,7 @@ export default class CategoryView extends React.Component {
         }).catch(function(err) {
             console.log(err)
         });
+        
     }
     likeIt() {
         this.like({like:'likeIt',vote:this.state.item[0].voteUp});
@@ -49,12 +56,34 @@ export default class CategoryView extends React.Component {
         this.like({like:'unlikeIt',vote:this.state.item[0].voteDown});
         this.componentDidMount();  
     }
-
+    isReaded() {
+        var id = this.props.match.params.id;
+        var type = this.props.match.params.type;
+        fetch('/categories/'+type+'/'+id, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({isreaded:true,readed:this.state.item[0].readed})
+        }).then(function(response) {
+          if (response.status >= 400) {
+            throw new Error("Bad response from server");
+        }
+            return response.json();
+        }).then(function(data) {    
+            if(data.success == true){
+               
+            }
+        }).catch(function(err) {
+            console.log(err)
+        });
+    }
     render() {
         return(
+            
             <div className='container'>
+                
                 <Link to={'/categories/'+this.props.match.params.type}>Back</Link>
                 {
+                    
                     this.state.item.map(
                         (res) => (
                             <div key={res.id}>
@@ -77,7 +106,12 @@ export default class CategoryView extends React.Component {
                         )
                     )
                 }
+                
+                
             </div>
+            
         )
+        
     }
+    
 }

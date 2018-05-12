@@ -18,11 +18,12 @@ export default class Categories extends React.Component {
                                         <table>
                                             <tbody>
                                                 <tr>
+                                                    <td>Readed</td>
                                                     <td>Like</td>
                                                     <td>Unlike</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>{item.voteUp}</td>
+                                                    <td>{item.readed}</td>
                                                     <td>{item.voteDown}</td>
                                                 </tr>
                                             </tbody>

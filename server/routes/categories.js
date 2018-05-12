@@ -22,7 +22,7 @@ router.get('/:type/:id', function (req, res, next) {
   });
 });
 router.post('/:type/:id', function(req, res, next) {
-  const id = req.params.id;
+  var id = req.params.id;
   var data = req.body.like;
   if (data == 'likeIt') {
      knex('categories')
@@ -44,6 +44,15 @@ router.post('/:type/:id', function(req, res, next) {
       res.json({ success: true});
     })
   }
-  
+  if (req.body.isreaded == true) {
+    knex('categories')
+    .where('id', id)
+    .update({
+      readed: req.body.readed + 1,
+      thisKeyIsSkipped: undefined
+    }).then( function (result) {
+      res.json({ success: true});
+    })
+  }
 });
 module.exports = router;

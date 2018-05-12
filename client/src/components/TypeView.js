@@ -31,10 +31,12 @@ export default class TypeView extends React.Component {
                                     <table>
                                         <tbody>
                                             <tr>
+                                                <td>Readed</td>
                                                 <td>Like</td>
                                                 <td>Unlike</td>
                                             </tr>
                                             <tr>
+                                                <td>{item.readed}</td>
                                                 <td>{item.voteUp}</td>
                                                 <td>{item.voteDown}</td>
                                             </tr>
