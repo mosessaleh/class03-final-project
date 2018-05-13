@@ -3,7 +3,7 @@ var path = require('path');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var categoriesRouter = require('./routes/categories');
+var contentsRouter = require('./routes/contents');
 var newContent = require('./routes/newContent');
 
 var app = express();
@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/', indexRouter);
 
 // TODO: insert a new route here :)
-app.use('/categories', categoriesRouter);
+app.use('/contents', contentsRouter);
 app.use('/newContent', newContent);
 
 module.exports = app;

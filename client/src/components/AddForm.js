@@ -38,7 +38,7 @@ export default class AddForm extends React.Component{
         }).then(function(data) {
             console.log(data)    
             if(data.success == true){
-               window.location.href = '/categories/'+data.category; 
+               window.location.href = '/contents/'+data.category; 
             }
         }).catch(function(err) {
             console.log(err)

@@ -5,7 +5,7 @@ var knex  = require('../helpers/knex');
 
 /* GET category listing. */
 router.post('/', function(req, res, next) {
-    return knex('categories').insert({
+    return knex('contents').insert({
       title: req.body.title,
       category : req.body.category,
       difficulty : req.body.difficulty,

@@ -3,11 +3,11 @@ import { BrowserRouter, Link, Route, Router, Switch} from 'react-router-dom';
 import './../../styles/App.css';
 
 import Home from './../../components/Home';
-import Categories from './../../components/Categories';
+import Contents from './../../components/Contents';
 import AboutUs from './../../components/AboutUs';
 import TypeView from './../../components/TypeView';
 import AddContent from './../../components/AddContent';
-import CategoryView from './../../components/CategoryView';
+import ContentView from './../../components/ContentView';
 
 // Just some contents
 // one more
@@ -39,10 +39,10 @@ class App extends Component {
             <Switch>
                 <Route path='/' exact render={(props) => <Home {...props} catLength={this.state.categories.length}/>} />
                 <Route path='/addContent' exact render={(props) => <AddContent {...props} />} />
-                <Route path='/categories' exact render={(props) => <Categories {...props} itemsList={this.state.categories}/>} />
+                <Route path='/contents' exact render={(props) => <Contents {...props} itemsList={this.state.categories}/>} />
                 <Route path='/aboutUs' exact render={(props) => <AboutUs {...props} />}/>
-                <Route path='/categories/:type' exact render={(props) => <TypeView {...props} />}/>
-                <Route path='/categories/:type/:id' exact render={(props) => <CategoryView {...props} />}/>
+                <Route path='/contents/:type' exact render={(props) => <TypeView {...props} />}/>
+                <Route path='/contents/:type/:id' exact render={(props) => <ContentView {...props} />}/>
             </Switch>
           </div>
         </BrowserRouter>

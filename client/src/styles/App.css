@@ -104,7 +104,11 @@ body {
   width: 30%;
   text-align: center;
 }
-
+.editTexterea {
+  min-width: 30vw;
+  height: 20vh;
+  resize: none;
+}
 
 
 @media only screen and (max-width: 867px) {

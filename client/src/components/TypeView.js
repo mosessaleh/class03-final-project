@@ -9,7 +9,7 @@ export default class TypeView extends React.Component {
         }
     } 
     componentDidMount() {
-        fetch('/categories/'+this.props.match.params.type)
+        fetch('/contents/'+this.props.match.params.type)
         .then(res => res.json())
         .then(item => this.setState({category: item}));
     }
@@ -24,8 +24,8 @@ export default class TypeView extends React.Component {
                         (item) => (
                             <div key={item.id} className='categoryDiv'>
                                 <div className='leftDiv'>
-                                    <label style={{fontSize:'25px'}}><Link style={{textDecoration:'none'}} to={'/categories/'+item.category+'/'+item.id}>{item.title}</Link></label>
-                                    <p>{item.description.substr(0, 30)+' ...'}<Link to={'/categories/'+this.props.match.params.type+'/'+item.id}>Read more</Link></p>
+                                    <label style={{fontSize:'25px'}}><Link style={{textDecoration:'none'}} to={'/contents/'+item.category+'/'+item.id}>{item.title}</Link></label>
+                                    <p>{item.description.substr(0, 30)+' ...'}<Link to={'/contents/'+this.props.match.params.type+'/'+item.id}>Read more</Link></p>
                                 </div>
                                 <div className='rightDiv'>
                                     <table>
