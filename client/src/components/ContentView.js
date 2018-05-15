@@ -13,15 +13,15 @@ const customStyles = {
       transform             : 'translate(-50%, -50%)'
     }
   };
+  Modal.setAppElement('#root')
 export default class ContentView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             'item':[],
-            'toUpdate': [
-            
-            ],
-            'modalIsOpen': false
+            'toUpdate': [],
+            'modalIsOpen': false,
+            'categories': []
         }
         this.like = this.like.bind(this);
         this.likeIt = this.likeIt.bind(this);
@@ -32,24 +32,26 @@ export default class ContentView extends React.Component {
         this.closeModal = this.closeModal.bind(this);
     }
     openModal() {
-        this.setState({modalIsOpen: true});
-      }
-    
-      afterOpenModal() {
-        // references are now sync'd and can be accessed.
-        this.subtitle.style.color = '#000';
-      }
-    
-      closeModal() {
-        this.setState({modalIsOpen: false});
-      }
+    this.setState({modalIsOpen: true});
+    }
+
+    afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    this.subtitle.style.color = '#000';
+    }
+
+    closeModal() {
+    this.setState({modalIsOpen: false});
+    }
     componentDidMount() {
         var id = this.props.match.params.id;
         var type = this.props.match.params.type;
         fetch('/contents/'+type+'/'+id)
         .then(res => res.json())
         .then(item1 => this.setState({item: item1}))
-        
+        fetch('/categories')
+        .then(res=>res.json())
+        .then(cat=>this.setState({categories: cat}))
     }
     componentWillUnmount() {
         this.isReaded();
@@ -143,24 +145,29 @@ export default class ContentView extends React.Component {
                                             <tbody>
                                             <tr>
                                                 <td><label>Title: </label></td>
-                                                <td><input name="title" value={res.title} type='text' /></td>
+                                                <td><input name="title" defaultValue={res.title} type='text' /></td>
                                             </tr>
                                             <tr>
                                                 <td><label>Category: </label></td>
                                                 <td>
-                                                <select name="category" value={res.category}>
+                                                <select name="category" defaultValue={res.category}>
                                                     <option value=""></option>
-                                                    <option value="html">HTML</option>
-                                                    <option value="css">CSS</option>
-                                                    <option value="js">JAVASCRIPT</option>
-                                                    <option value="others">Others</option>
+                                                    {
+                                                        this.state.categories.map(
+                                                            res=> {
+                                                                return (
+                                                                    <option key={res.id} value={res.toRoute}>{res.name}</option>
+                                                                )
+                                                            }
+                                                        )
+                                                    }
                                                 </select>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td><label>Difficulty: </label></td>
                                                 <td>
-                                                    <select name="difficulty" value={res.difficulty}>
+                                                    <select name="difficulty" defaultValue={res.difficulty}>
                                                         <option value=""></option>
                                                         <option value="basic">Basic</option>
                                                         <option value="intermediate">Intermediate</option>
@@ -171,7 +178,7 @@ export default class ContentView extends React.Component {
                                             <tr>
                                                 <td><label>Type: </label></td>
                                                 <td>
-                                                    <select name="type" value={res.type}>
+                                                    <select name="type" defaultValue={res.type}>
                                                         <option value=""></option>
                                                         <option value="video">Video</option>
                                                         <option value="audio">Audio</option>
@@ -180,11 +187,11 @@ export default class ContentView extends React.Component {
                                             </tr>
                                             <tr>
                                                 <td><label>Link: </label></td>
-                                                <td><input name="link" type='text' value={res.link} /></td>
+                                                <td><input name="link" type='text' defaultValue={res.link} /></td>
                                             </tr>
                                             <tr>
                                                 <td><label>Description: </label></td>
-                                                <td> <textarea className='editTexterea' name="description" value={res.description}/></td>
+                                                <td> <textarea className='editTexterea' name="description" defaultValue={res.description}/></td>
                                             </tr>
                                             </tbody>
                                         </table>

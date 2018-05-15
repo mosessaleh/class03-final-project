@@ -109,7 +109,14 @@ body {
   height: 20vh;
   resize: none;
 }
-
+.loading {
+  position: fixed;
+  top: 200px;
+  left: 35%;
+  width: 30%;
+  height: 50%;
+  z-index: 1111;
+}
 
 @media only screen and (max-width: 867px) {
   .container {

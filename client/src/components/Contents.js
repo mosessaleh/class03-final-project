@@ -5,7 +5,9 @@ export default class Contents extends React.Component {
     render() {
         return (
             <div className="container">
+            {console.log(this.props.itemsList)}
                     {
+                        
                         this.props.itemsList.map(
                             (item) => (
                                 <div key={item.id} className='categoryDiv'>

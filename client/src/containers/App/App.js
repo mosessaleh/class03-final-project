@@ -8,6 +8,7 @@ import AboutUs from './../../components/AboutUs';
 import TypeView from './../../components/TypeView';
 import AddContent from './../../components/AddContent';
 import ContentView from './../../components/ContentView';
+import AddCategory from './../../components/AddCategory';
 
 // Just some contents
 // one more
@@ -15,13 +16,14 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      'categories': []
+      contents: [],
     }
   }
   componentDidMount() {
-    fetch('/categories')
+    fetch('/contents')
     .then(res => res.json())
-    .then(items => this.setState({categories: items}));
+    .then(items => this.setState({contents: items}));
+    
   }
   render() {
     
@@ -33,13 +35,15 @@ class App extends Component {
             <ul className='navItems'>  
               <Link className='listItem' to='/'>Home</Link>
               <Link className='listItem' to='/addContent'>Add new content</Link>
-              <Link className='listItem' to='/categories'>All contents</Link>
+              <Link className='listItem' to='/addCategory'>Add new category</Link>
+              <Link className='listItem' to='/contents'>All contents</Link>
               <Link className='listItem' to='/aboutUs'>About us</Link>
             </ul>
             <Switch>
-                <Route path='/' exact render={(props) => <Home {...props} catLength={this.state.categories.length}/>} />
+                <Route path='/' exact render={(props) => <Home {...props} catLength={this.state.contents.length}/>} />
                 <Route path='/addContent' exact render={(props) => <AddContent {...props} />} />
-                <Route path='/contents' exact render={(props) => <Contents {...props} itemsList={this.state.categories}/>} />
+                <Route path='/addCategory' exact render={(props) => <AddCategory {...props} />} />
+                <Route path='/contents' exact render={(props) => <Contents {...props} itemsList={this.state.contents}/>} />
                 <Route path='/aboutUs' exact render={(props) => <AboutUs {...props} />}/>
                 <Route path='/contents/:type' exact render={(props) => <TypeView {...props} />}/>
                 <Route path='/contents/:type/:id' exact render={(props) => <ContentView {...props} />}/>

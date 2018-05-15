@@ -3,15 +3,15 @@ var router = express.Router();
 
 var knex  = require('../helpers/knex');
 
-/* GET category listing. */
+/* GET contents listing. */
 router.get('/', function(req, res, next) {
-  knex('contents').select().then( function(data) {
+  knex('contents').select().orderBy('id','desc').then( function(data) {
     res.send(data);
   });
 });
 router.get('/:type', function (req, res, next) {
   const type = req.params.type;
-  knex('contents').where('category',type).then(function(data){
+  knex('contents').where('category',type).orderBy('id','desc').then(function(data){
     res.send(data);
   });
 });

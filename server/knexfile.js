@@ -32,7 +32,7 @@ module.exports = {
     },
     migrations: {
       tableName: 'knex_migrations',
-      tableName: 'knex_migrations'
+      tableName: 'contents'
     }
   },
 
@@ -49,7 +49,7 @@ module.exports = {
     },
     migrations: {
       tableName: 'knex_migrations',
-      tableName: 'knex_migrations'
+      tableName: 'contents'
     }
   }
 

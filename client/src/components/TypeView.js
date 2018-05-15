@@ -5,22 +5,22 @@ export default class TypeView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            'category':[]
+            'content':[]
         }
     } 
     componentDidMount() {
         fetch('/contents/'+this.props.match.params.type)
         .then(res => res.json())
-        .then(item => this.setState({category: item}));
+        .then(item => this.setState({content: item}));
     }
     render() {
         return (
             <div className="container">
                 <center>
-                    <h1>Items for caregoty: {this.props.match.params.type}</h1> 
+                    <h1>Items for caregoty: {this.props.match.params.type}</h1>
                 </center>
                 {
-                    this.state.category.map(
+                    this.state.content.map(
                         (item) => (
                             <div key={item.id} className='categoryDiv'>
                                 <div className='leftDiv'>

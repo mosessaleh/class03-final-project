@@ -10,10 +10,16 @@ export default class AddForm extends React.Component{
             difficulty : '',
             type: '',
             link: '',
-            description:''
+            description:'',
+            categoriesList:[]
           }
           this.submitForm = this.submitForm.bind(this);
           this.changeData = this.changeData.bind(this);
+    }
+    componentDidMount() {
+        fetch('categories')
+        .then(res=>res.json())
+        .then(result=>this.setState({categoriesList: result}))
     }
     submitForm(event) {
         if (this.state.title == '' || this.state.category == '' || this.state.difficulty == '' || this.state.type == '' || this.state.link == '' || this.state.description == '')  return
@@ -61,10 +67,13 @@ export default class AddForm extends React.Component{
                         <td>
                         <select name="category" onChange={this.changeData}>
                             <option value=""></option>
-                            <option value="html">HTML</option>
-                            <option value="css">CSS</option>
-                            <option value="js">JAVASCRIPT</option>
-                            <option value="others">Others</option>
+                            {
+                                this.state.categoriesList.map(
+                                    res=>{
+                                        return <option value={res.toRoute}>{res.name}</option>
+                                    }
+                                )
+                            }
                         </select>
                         </td>
                     </tr>
