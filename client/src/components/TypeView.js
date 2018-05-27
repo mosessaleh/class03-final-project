@@ -18,6 +18,9 @@ export default class TypeView extends React.Component {
             <div className="container">
                 <center>
                     <h1>Items for caregoty: {this.props.match.params.type}</h1>
+                    {
+                        this.state.content == '' && 'No items to show'
+                    }
                 </center>
                 {
                     this.state.content.map(

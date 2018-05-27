@@ -1,18 +1,56 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import Modal from 'react-modal';
+
+const customStyles = {
+    content : {
+      top                   : '50%',
+      left                  : '50%',
+      right                 : 'auto',
+      bottom                : 'auto',
+      marginRight           : '-50%',
+      transform             : 'translate(-50%, -50%)'
+    }
+  };
+  Modal.setAppElement('#root')
 
 export default class AddCategory extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             name: '',
-            toRoute: ''
+            toRoute: '',
+            modalIsOpen: false,
+            categories: []
         }
         this.changeInput = this.changeInput.bind(this);
         this.submitForm = this.submitForm.bind(this);
+        this.openModal = this.openModal.bind(this);
+        this.afterOpenModal = this.afterOpenModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+        this.selectCat = this.selectCat.bind(this);
     }
+    componentDidMount() {
+        fetch('/categories')
+        .then(res=>res.json())
+        .then(cat => this.setState({categories: cat}))
+    }
+
+    openModal() {
+        this.setState({modalIsOpen: true});
+    }
+
+    afterOpenModal() {
+        // references are now sync'd and can be accessed.
+        this.subtitle.style.color = '#000';
+    }
+
+    closeModal() {
+        this.setState({modalIsOpen: false,name:"",toRoute:""});
+    }
+
     submitForm(event) {
-        if (this.state.title == '' || this.state.category == '' || this.state.difficulty == '' || this.state.type == '' || this.state.link == '' || this.state.description == '')  return
+        if (this.state.name == '' || this.state.toRoute == '')  return alert('Please fill all fields')
         event.preventDefault()
         var data = {
             name: this.state.name,
@@ -42,6 +80,9 @@ export default class AddCategory extends React.Component {
     changeInput(event) {
         this.setState({[event.target.name]: event.target.value});
     }
+    selectCat(event) {
+        this.setState({name: event.target.name, toRoute: event.target.value}); 
+    }
     render() {
         return (
             <div className='container'>
@@ -62,8 +103,8 @@ export default class AddCategory extends React.Component {
                         </tbody>
                     </table>
                     <input type="submit" value='Add category' />
-                </form><br />
-                <Link to=''>Edit a category</Link>
+                </form>
+
             </div>
         )
     }

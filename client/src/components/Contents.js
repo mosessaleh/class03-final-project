@@ -5,7 +5,13 @@ export default class Contents extends React.Component {
     render() {
         return (
             <div className="container">
-            {console.log(this.props.itemsList)}
+                <center>
+                    <h1>All contents</h1>
+                    
+                    {
+                        this.props.itemsList == '' && 'No items to show'
+                    }
+                </center>
                     {
                         
                         this.props.itemsList.map(

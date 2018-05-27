@@ -22,7 +22,7 @@ export default class AddForm extends React.Component{
         .then(result=>this.setState({categoriesList: result}))
     }
     submitForm(event) {
-        if (this.state.title == '' || this.state.category == '' || this.state.difficulty == '' || this.state.type == '' || this.state.link == '' || this.state.description == '')  return
+        if (this.state.title == '' || this.state.category == '' || this.state.difficulty == '' || this.state.type == '' || this.state.link == '' || this.state.description == '')  return alert('Please fill all fields')
         event.preventDefault()
         var data = {
             category: this.state.category,
