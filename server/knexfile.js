@@ -1,51 +1,55 @@
 // Update with your config settings.
 
 module.exports = {
+
   development: {
     client: 'mysql',
     connection: {
-      database: 'hyf_dev',
-      user:     'test',
-      password: 'test'
+      database: 'myNew',
+      user:     'root',
+      password: ''
     },
     pool: {
       min: 2,
       max: 10
     },
     migrations: {
-      tableName: 'knex_migrations'
+      tableName: 'knex_migrations',
+      tableName: 'contents'
     }
   },
 
- staging: {
-    client: 'mysql',
+  staging: {
+    client: 'postgresql',
     connection: {
-      database: 'hyf_staging',
-      user:     'test',
-      password: 'test'
+      database: 'my_db',
+      user:     'username',
+      password: 'password'
     },
     pool: {
       min: 2,
       max: 10
     },
     migrations: {
-      tableName: 'knex_migrations'
+      tableName: 'knex_migrations',
+      tableName: 'contents'
     }
   },
 
   production: {
-    client: 'mysql',
+    client: 'postgresql',
     connection: {
-      database: 'hyf',
-      user:     'test',
-      password: 'test'
+      database: 'my_db',
+      user:     'username',
+      password: 'password'
     },
     pool: {
       min: 2,
       max: 10
     },
     migrations: {
-      tableName: 'knex_migrations'
+      tableName: 'knex_migrations',
+      tableName: 'contents'
     }
   }
 
