@@ -11,7 +11,8 @@ export default class AddForm extends React.Component{
             type: '',
             link: '',
             description:'',
-            categoriesList:[]
+            categoriesList:[],
+            loading: false
           }
           this.submitForm = this.submitForm.bind(this);
           this.changeData = this.changeData.bind(this);
@@ -32,6 +33,7 @@ export default class AddForm extends React.Component{
             type: this.state.type,
             description:this.state.description
         }
+        this.setState({loading: true})
         fetch('/newContent', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -44,11 +46,13 @@ export default class AddForm extends React.Component{
         }).then(function(data) {
             console.log(data)    
             if(data.success == true){
-               window.location.href = '/contents/'+data.category; 
+                this.setState({loading: false})
+                window.location.href = '/contents/'+data.category; 
             }
-        }).catch(function(err) {
+        }.bind(this)).catch(function(err) {
             console.log(err)
         });
+        
     }
     changeData(event) {
         this.setState({[event.target.name]: event.target.value}); 
@@ -70,7 +74,7 @@ export default class AddForm extends React.Component{
                             {
                                 this.state.categoriesList.map(
                                     res=>{
-                                        return <option value={res.toRoute}>{res.name}</option>
+                                        return <option key={res.id} value={res.toRoute}>{res.name}</option>
                                     }
                                 )
                             }
@@ -109,7 +113,11 @@ export default class AddForm extends React.Component{
                     </tbody>
                 </table>
                 <input type="submit" value='Add content' />
+                {
+                    this.state.loading ? <div className="loadingDiv"><img className="loading" src="http://www2.deq.idaho.gov/air/AQIPublic/Content/icons/spinner.gif" /></div> : ''
+                }
             </form>
+            
         )
     }
 }

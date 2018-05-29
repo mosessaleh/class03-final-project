@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import Modal from 'react-modal';
-
+import SweetAlert from 'react-bootstrap-sweetalert';
 
 const customStyles = {
     content : {
@@ -21,7 +21,8 @@ export default class ContentView extends React.Component {
             'item':[],
             'toUpdate': [],
             'modalIsOpen': false,
-            'categories': []
+            'categories': [],
+            loading: true
         }
         this.like = this.like.bind(this);
         this.likeIt = this.likeIt.bind(this);
@@ -30,7 +31,7 @@ export default class ContentView extends React.Component {
         this.openModal = this.openModal.bind(this);
         this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
-    }
+        }
     openModal() {
     this.setState({modalIsOpen: true});
     }
@@ -44,6 +45,7 @@ export default class ContentView extends React.Component {
     this.setState({modalIsOpen: false});
     }
     componentDidMount() {
+        this.setState({loading: true})
         var id = this.props.match.params.id;
         var type = this.props.match.params.type;
         fetch('/contents/'+type+'/'+id)
@@ -52,11 +54,13 @@ export default class ContentView extends React.Component {
         fetch('/categories')
         .then(res=>res.json())
         .then(cat=>this.setState({categories: cat}))
+        this.setState({loading:false})
     }
     componentWillUnmount() {
         this.isReaded();
     }
     like(send) {
+        this.setState({loading:true})
         var id = this.props.match.params.id;
         var type = this.props.match.params.type;
         fetch('/contents/'+type+'/'+id, {
@@ -75,7 +79,6 @@ export default class ContentView extends React.Component {
         }).catch(function(err) {
             console.log(err)
         });
-        
     }
     likeIt() {
         this.like({like:'likeIt',vote:this.state.item[0].voteUp});
@@ -86,6 +89,7 @@ export default class ContentView extends React.Component {
         this.componentDidMount();  
     }
     isReaded() {
+        this.setState({loading:true})
         var id = this.props.match.params.id;
         var type = this.props.match.params.type;
         fetch('/contents/'+type+'/'+id, {
@@ -105,6 +109,29 @@ export default class ContentView extends React.Component {
             console.log(err)
         });
     }
+    deleteFile() {
+        var id = this.props.match.params.id;
+        this.setState({loading: true})
+        fetch('/removeContent/'+id, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: ''
+        }).then(function(response) {
+          if (response.status >= 400) {
+            throw new Error("Bad response from server");
+        }
+            return response.json();
+        }).then(function(data) {    
+            if(data.success == true){
+               window.location.href='/'
+            }
+        }).catch(function(err) {
+            console.log(err)
+        });
+    }
+    cancelDelete() {
+        console.log('Canceled')
+    }
     render() {
         return(
             
@@ -119,7 +146,13 @@ export default class ContentView extends React.Component {
                                 <center>
                                     <h1>{res.title}</h1>
                                     <button onClick={this.openModal}>Edit</button>{' ------- '}
-                                     <button >Remove</button>
+                                     <button onClick={
+                                       () => {
+                                        (window.confirm('Are you sure want to delete this content?')) ? this.deleteFile() : this.cancelDelete()
+                                       }
+                                    }>
+                                         Remove
+                                     </button>
                                 </center>
                                 <br /><br />
                                 <p>Caregory: <b>{res.category}</b></p>
@@ -205,7 +238,9 @@ export default class ContentView extends React.Component {
                         )
                     )
                 }
-                
+                {
+                    this.state.loading ? <div className="loadingDiv"><img className="loading" src="http://www2.deq.idaho.gov/air/AQIPublic/Content/icons/spinner.gif" /></div> : ''
+                }
                 
             </div>
             

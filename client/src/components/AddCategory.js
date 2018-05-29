@@ -97,7 +97,7 @@ export default class AddCategory extends React.Component {
                                 <td><input name="name" onChange={this.changeInput} type='text' /></td>
                             </tr>
                             <tr>
-                                <td><label>Category tag: </label></td>
+                                <td><label>Category shortcut: </label></td>
                                 <td><input name="toRoute" type='text' onChange={this.changeInput} /></td>
                             </tr>
                         </tbody>

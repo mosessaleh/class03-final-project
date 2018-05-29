@@ -17,12 +17,14 @@ class App extends Component {
     super(props);
     this.state = {
       contents: [],
+      loading: false
     }
   }
   componentDidMount() {
+    this.setState({loading: true})
     fetch('/contents')
     .then(res => res.json())
-    .then(items => this.setState({contents: items}));
+    .then(items => this.setState({contents: items, loading: false}));
     
   }
   render() {
@@ -48,7 +50,11 @@ class App extends Component {
                 <Route path='/contents/:type' exact render={(props) => <TypeView {...props} />}/>
                 <Route path='/contents/:type/:id' exact render={(props) => <ContentView {...props} />}/>
             </Switch>
+            {
+              this.state.loading ? <div className="loadingDiv"><img className="loading" src="http://www2.deq.idaho.gov/air/AQIPublic/Content/icons/spinner.gif" /></div> : ''
+            }
           </div>
+          
         </BrowserRouter>
       </div>
     );
