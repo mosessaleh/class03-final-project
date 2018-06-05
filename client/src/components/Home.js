@@ -22,8 +22,8 @@ export default class Home extends React.Component {
         return (
             <div className="container">
                 <center>
-                    <h1>Welcome</h1>
-                    <p>Please select your category.</p>
+                    <h1>Welcome and let's learn</h1>
+                    <p>What do you want to learn?</p>
                 </center>
                 
                 {

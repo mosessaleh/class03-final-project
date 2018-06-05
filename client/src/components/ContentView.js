@@ -22,7 +22,8 @@ export default class ContentView extends React.Component {
             'toUpdate': [],
             'modalIsOpen': false,
             'categories': [],
-            loading: true
+            loading: true,
+            editContent: []
         }
         this.like = this.like.bind(this);
         this.likeIt = this.likeIt.bind(this);
@@ -31,6 +32,7 @@ export default class ContentView extends React.Component {
         this.openModal = this.openModal.bind(this);
         this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.editContentConfirm = this.editContentConfirm.bind(this)
         }
     openModal() {
     this.setState({modalIsOpen: true});
@@ -132,6 +134,9 @@ export default class ContentView extends React.Component {
     cancelDelete() {
         console.log('Canceled')
     }
+    editContentConfirm() {
+        alert('You cannot edit the content, the function is not ready yet! :D')
+    }
     render() {
         return(
             
@@ -173,12 +178,12 @@ export default class ContentView extends React.Component {
                                     >
                                     <h2 ref={subtitle => this.subtitle = subtitle}>Edit {res.title}</h2>
                                     <p>Make sure to fill all fields.</p><br/>
-                                    <form>
+                                    <form onSubmit={this.editContentConfirm}> 
                                         <table>
                                             <tbody>
                                             <tr>
                                                 <td><label>Title: </label></td>
-                                                <td><input name="title" defaultValue={res.title} type='text' /></td>
+                                                <td><input name="title" defaultValue={res.title} type='text' required /></td>
                                             </tr>
                                             <tr>
                                                 <td><label>Category: </label></td>
@@ -231,7 +236,7 @@ export default class ContentView extends React.Component {
                                     </form>
                                     <br /><hr />
                                     <button onClick={this.closeModal}>close</button>
-                                    <button>Edit this</button>
+                                    <button onClick={this.editContentConfirm}>Edit this</button>
                                     
                                 </Modal>
                             </div>

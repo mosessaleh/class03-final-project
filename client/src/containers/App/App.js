@@ -3,6 +3,7 @@ import { BrowserRouter, Link, Route, Router, Switch} from 'react-router-dom';
 import './../../styles/App.css';
 
 import Home from './../../components/Home';
+import NavBar from './../../components/NavBar';
 import Contents from './../../components/Contents';
 import AboutUs from './../../components/AboutUs';
 import TypeView from './../../components/TypeView';
@@ -34,13 +35,7 @@ class App extends Component {
         
         <BrowserRouter> 
           <div>
-            <ul className='navItems'>  
-              <Link className='listItem' to='/'>Home</Link>
-              <Link className='listItem' to='/addContent'>Add new content</Link>
-              <Link className='listItem' to='/addCategory'>Add new category</Link>
-              <Link className='listItem' to='/contents'>All contents</Link>
-              <Link className='listItem' to='/aboutUs'>About us</Link>
-            </ul>
+            <NavBar />
             <Switch>
                 <Route path='/' exact render={(props) => <Home {...props} catLength={this.state.contents.length}/>} />
                 <Route path='/addContent' exact render={(props) => <AddContent {...props} />} />

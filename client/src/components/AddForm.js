@@ -64,12 +64,12 @@ export default class AddForm extends React.Component{
                     <tbody>
                     <tr>
                         <td><label>Title: </label></td>
-                        <td><input name="title" onChange={this.changeData} type='text' /></td>
+                        <td><input name="title" className="form-control" onChange={this.changeData} type='text' /></td>
                     </tr>
                     <tr>
                         <td><label>Category: </label></td>
                         <td>
-                        <select name="category" onChange={this.changeData}>
+                        <select name="category" className="form-control" onChange={this.changeData}>
                             <option value=""></option>
                             {
                                 this.state.categoriesList.map(
@@ -84,7 +84,7 @@ export default class AddForm extends React.Component{
                     <tr>
                         <td><label>Difficulty: </label></td>
                         <td>
-                            <select name="difficulty" onChange={this.changeData}>
+                            <select name="difficulty" className="form-control" onChange={this.changeData}>
                                 <option value=""></option>
                                 <option value="basic">Basic</option>
                                 <option value="intermediate">Intermediate</option>
@@ -95,7 +95,7 @@ export default class AddForm extends React.Component{
                     <tr>
                         <td><label>Type: </label></td>
                         <td>
-                            <select name="type" onChange={this.changeData}>
+                            <select className="form-control" name="type" onChange={this.changeData}>
                                 <option value=""></option>
                                 <option value="video">Video</option>
                                 <option value="audio">Audio</option>
@@ -104,15 +104,15 @@ export default class AddForm extends React.Component{
                     </tr>
                     <tr>
                         <td><label>Link: </label></td>
-                        <td><input name="link" onChange={this.changeData} type='text' /></td>
+                        <td><input name="link" className="form-control" onChange={this.changeData} type='text' /></td>
                     </tr>
                     <tr>
                         <td><label>Description: </label></td>
-                        <td> <textarea onChange={this.changeData} name="description" /></td>
+                        <td> <textarea className="form-control" onChange={this.changeData} name="description" /></td>
                     </tr>
                     </tbody>
-                </table>
-                <input type="submit" value='Add content' />
+                </table><br />
+                <input type="submit" className="btn btn-success" value='Add content' />
                 {
                     this.state.loading ? <div className="loadingDiv"><img className="loading" src="http://www2.deq.idaho.gov/air/AQIPublic/Content/icons/spinner.gif" /></div> : ''
                 }
