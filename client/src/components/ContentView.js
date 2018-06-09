@@ -178,7 +178,7 @@ export default class ContentView extends React.Component {
             return response.json();
         }).then(function(data) {   
             if(data.success == true){
-                window.location.href = '/contents/'+this.props.match.params.category+'/'+id
+                window.location.href = '/contents/'+this.props.match.params.type+'/'+id
             }
         }.bind(this)).catch(function(err) {
             console.log(err)
