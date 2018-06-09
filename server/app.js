@@ -4,6 +4,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var contentsRouter = require('./routes/contents');
+var editContent = require('./routes/editContent');
 var newContent = require('./routes/newContent');
 var removeContent = require('./routes/removeContent');
 var newCategory = require('./routes/newCategory');
@@ -22,6 +23,7 @@ app.use('/', indexRouter);
 app.use('/contents', contentsRouter);
 app.use('/categories', categoriesRouter);
 app.use('/newContent', newContent);
+app.use('/editContent', editContent);
 app.use('/removeContent', removeContent);
 app.use('/newCategory', newCategory);
 

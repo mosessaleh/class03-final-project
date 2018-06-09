@@ -3,12 +3,11 @@
 }
 
 body {
-  background-color: rgb(119, 118, 118);
+  background-color: rgb(255, 255, 255);
 }
 .container {
   min-height: 90vh;
   margin: 0 auto ;
-  margin-top: 30px !important;
   background-color: #fff;
   border: 1px solid #ddd;
   padding: 25px !important;
@@ -127,8 +126,30 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  opacity: 0.2;
+  opacity: 0.6;
   background-color: #000;
+}
+.leftSide {
+  width: 20%;
+  min-height: 300px;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  float: left;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+
+
+}
+.rightSide {
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  float: right;
+  width: 78%;
+  min-height: 300px;
+  border: 1px solid #ddd;
+  border-radius: 15px;
 }
 
 @media only screen and (max-width: 867px) {
@@ -138,5 +159,21 @@ body {
     border: none;
     margin-top: 0px;
     border-radius: 0;
+  }
+  .leftSide {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+    min-height: 100px;
+  
+  
+  }
+  .rightSide {
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    min-height: 100px;
   }
 }

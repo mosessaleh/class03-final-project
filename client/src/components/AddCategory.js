@@ -21,7 +21,8 @@ export default class AddCategory extends React.Component {
             name: '',
             toRoute: '',
             modalIsOpen: false,
-            categories: []
+            categories: [],
+            loggedAs: localStorage.getItem('logged')
         }
         this.changeInput = this.changeInput.bind(this);
         this.submitForm = this.submitForm.bind(this);
@@ -86,24 +87,31 @@ export default class AddCategory extends React.Component {
     render() {
         return (
             <div className='container'>
-                <center>
-                    <h1>Add new category</h1>
-                </center>
-                <form onSubmit={this.submitForm} className="addForm">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td><label>Category name: </label></td>
-                                <td><input name="name" onChange={this.changeInput} type='text' /></td>
-                            </tr>
-                            <tr>
-                                <td><label>Category shortcut: </label></td>
-                                <td><input name="toRoute" type='text' onChange={this.changeInput} /></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <input type="submit" value='Add category' />
-                </form>
+                {
+                    this.state.loggedAs != 'visitor'
+                    ? 
+                        <div>
+                        <center>
+                            <h1>Add new category</h1>
+                        </center>
+                        <form onSubmit={this.submitForm} className="addForm">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td><label>Category name: </label></td>
+                                        <td><input name="name" onChange={this.changeInput} type='text' /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Category shortcut: </label></td>
+                                        <td><input name="toRoute" type='text' onChange={this.changeInput} /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <input type="submit" value='Add category' />
+                        </form></div>
+                    : window.location.href='/'
+                }
+                
 
             </div>
         )
