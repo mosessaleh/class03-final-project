@@ -5,19 +5,22 @@ export default class TypeView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            'content':[]
+            'content':[],
+            loading: false
         }
+        
     } 
     componentDidMount() {
+        this.setState({loading: true})
         fetch('/contents/'+this.props.match.params.type)
         .then(res => res.json())
-        .then(item => this.setState({content: item}));
+        .then(item => this.setState({content: item, loading: false}));
     }
     render() {
         return (
             <div className="container">
                 <center>
-                    <h1>Items for caregoty: {this.props.match.params.type}</h1>
+                    <h1>Items</h1>
                     {
                         this.state.content == '' && 'No items to show'
                     }
@@ -49,6 +52,9 @@ export default class TypeView extends React.Component {
                             </div>
                         )
                     )
+                }
+                {
+                    this.state.loading ? <div className="loadingDiv"><img className="loading" src="http://www2.deq.idaho.gov/air/AQIPublic/Content/icons/spinner.gif" /></div> : ''
                 }
             </div>
         )

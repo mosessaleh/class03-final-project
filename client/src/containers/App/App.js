@@ -3,6 +3,7 @@ import { BrowserRouter, Link, Route, Router, Switch} from 'react-router-dom';
 import './../../styles/App.css';
 
 import Home from './../../components/Home';
+import NavBar from './../../components/NavBar';
 import Contents from './../../components/Contents';
 import AboutUs from './../../components/AboutUs';
 import TypeView from './../../components/TypeView';
@@ -13,18 +14,7 @@ import AddCategory from './../../components/AddCategory';
 // Just some contents
 // one more
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      contents: [],
-    }
-  }
-  componentDidMount() {
-    fetch('/contents')
-    .then(res => res.json())
-    .then(items => this.setState({contents: items}));
-    
-  }
+
   render() {
     
     return (
@@ -32,23 +22,18 @@ class App extends Component {
         
         <BrowserRouter> 
           <div>
-            <ul className='navItems'>  
-              <Link className='listItem' to='/'>Home</Link>
-              <Link className='listItem' to='/addContent'>Add new content</Link>
-              <Link className='listItem' to='/addCategory'>Add new category</Link>
-              <Link className='listItem' to='/contents'>All contents</Link>
-              <Link className='listItem' to='/aboutUs'>About us</Link>
-            </ul>
+            <NavBar />
             <Switch>
-                <Route path='/' exact render={(props) => <Home {...props} catLength={this.state.contents.length}/>} />
+                <Route path='/' exact render={(props) => <Home {...props}/>} />
                 <Route path='/addContent' exact render={(props) => <AddContent {...props} />} />
                 <Route path='/addCategory' exact render={(props) => <AddCategory {...props} />} />
-                <Route path='/contents' exact render={(props) => <Contents {...props} itemsList={this.state.contents}/>} />
+                <Route path='/contents' exact render={(props) => <Contents {...props}/>} />
                 <Route path='/aboutUs' exact render={(props) => <AboutUs {...props} />}/>
                 <Route path='/contents/:type' exact render={(props) => <TypeView {...props} />}/>
                 <Route path='/contents/:type/:id' exact render={(props) => <ContentView {...props} />}/>
             </Switch>
           </div>
+          
         </BrowserRouter>
       </div>
     );

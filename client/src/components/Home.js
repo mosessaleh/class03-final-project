@@ -12,21 +12,25 @@ export default class Home extends React.Component {
     componentWillMount() {
         fetch('/categories')
         .then(res=>res.json())
-        .then(result=>this.setState({categories: result}))
-         
+        .then(result=>
+            this.setState({categories: result})
+            // console.log(result)
+        )
+        
     }
     render () {
         return (
             <div className="container">
                 <center>
-                    <h1>Welcome</h1>
-                    <p>Please select your category.</p>
+                    <h1>Welcome and let's learn</h1>
+                    <p>What do you want to learn?</p>
                 </center>
                 
                 {
                     
                     this.state.categories.map(
                         res => {
+                            
                             return (<Link key={res.id} to={'/contents/'+res.toRoute} style={{ textDecoration: 'none' }}>
                                 <div className='catItem'>
                                     <h1>{res.name}</h1>
