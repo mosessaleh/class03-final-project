@@ -14,20 +14,7 @@ import AddCategory from './../../components/AddCategory';
 // Just some contents
 // one more
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      contents: [],
-      loading: false
-    }
-  }
-  componentDidMount() {
-    this.setState({loading: true})
-    fetch('/contents')
-    .then(res => res.json())
-    .then(items => this.setState({contents: items, loading: false}));
-    
-  }
+
   render() {
     
     return (
@@ -37,17 +24,14 @@ class App extends Component {
           <div>
             <NavBar />
             <Switch>
-                <Route path='/' exact render={(props) => <Home {...props} catLength={this.state.contents.length}/>} />
+                <Route path='/' exact render={(props) => <Home {...props}/>} />
                 <Route path='/addContent' exact render={(props) => <AddContent {...props} />} />
                 <Route path='/addCategory' exact render={(props) => <AddCategory {...props} />} />
-                <Route path='/contents' exact render={(props) => <Contents {...props} itemsList={this.state.contents}/>} />
+                <Route path='/contents' exact render={(props) => <Contents {...props}/>} />
                 <Route path='/aboutUs' exact render={(props) => <AboutUs {...props} />}/>
                 <Route path='/contents/:type' exact render={(props) => <TypeView {...props} />}/>
                 <Route path='/contents/:type/:id' exact render={(props) => <ContentView {...props} />}/>
             </Switch>
-            {
-              this.state.loading ? <div className="loadingDiv"><img className="loading" src="http://www2.deq.idaho.gov/air/AQIPublic/Content/icons/spinner.gif" /></div> : ''
-            }
           </div>
           
         </BrowserRouter>

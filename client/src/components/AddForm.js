@@ -112,7 +112,7 @@ export default class AddForm extends React.Component{
                     </tr>
                     </tbody>
                 </table><br />
-                <input type="submit" className="btn btn-success" value='Add content' />
+                <input type="submit" className="btn btn-success" disabled={ this.state.title =='' || this.state.difficulty == '' || this.state.type =='' || this.state.link ==''||this.state.category =='' || this.state.description == '' ? 'disabled' : '' } value='Add content' />
                 {
                     this.state.loading ? <div className="loadingDiv"><img className="loading" src="http://www2.deq.idaho.gov/air/AQIPublic/Content/icons/spinner.gif" /></div> : ''
                 }

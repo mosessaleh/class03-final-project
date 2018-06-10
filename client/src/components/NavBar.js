@@ -22,7 +22,7 @@ export default class NavBar extends React.Component {
         this.setState({loading:true})
         setTimeout(
             function() {
-                localStorage.setItem('logged','admin')
+                localStorage.setItem('logged','User/Admin')
                 this.setState({loggedAs: localStorage.getItem('logged'),loading: false})
             }.bind(this), 2000);
     }
@@ -66,15 +66,15 @@ export default class NavBar extends React.Component {
                         
                         <ul className="navbar-nav">
                             {
-                                (localStorage.getItem('logged') == 'user' || localStorage.getItem('logged') == 'admin')
+                                (localStorage.getItem('logged') == 'User/Admin')
                                 ? (window.location.pathname == '/addContent' || window.location.pathname == '/addCategory' ) ? null : <a className='nav-link' onClick={this.logout} href='#'>logout</a>
-                                : <a className='nav-link' onClick={this.login} href='#'>Admin login</a>
+                                : <a className='nav-link' onClick={this.login} href='#'>User/Admin login</a>
                             }
                         </ul>
                         
                     </div>
                 </nav>
-                <label className='nav-link' style={{width:'100%',textAlign:'center'}}>Welcome Mr. <b>{this.state.loggedAs}</b> {this.state.loggedAs == 'visitor' && ' login to add contents'}</label>
+                <label className='nav-link' style={{width:'100%',textAlign:'center'}}>Welcome <b>{this.state.loggedAs}</b> {this.state.loggedAs == 'visitor' && ' login to add contents'}</label>
                 {
                     this.state.loading ? <div className="loadingDiv"><img className="loading" src="http://www2.deq.idaho.gov/air/AQIPublic/Content/icons/spinner.gif" /></div> : ''
                 }

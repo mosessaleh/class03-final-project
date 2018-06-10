@@ -107,7 +107,7 @@ export default class AddCategory extends React.Component {
                                     </tr>
                                 </tbody>
                             </table>
-                            <input type="submit" value='Add category' />
+                            <input type="submit" className='btn btn-success' disabled={ this.state.name == '' || this.state.toRoute == '' ? 'disabled' : '' } value='Add category' />
                         </form></div>
                     : window.location.href='/'
                 }
