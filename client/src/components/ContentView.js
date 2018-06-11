@@ -81,9 +81,6 @@ export default class ContentView extends React.Component {
         .then(cat=>this.setState({categories: cat,loading:false}))
         
     }
-    componentWillUnmount() {
-        this.isReaded();
-    }
     like(send) {
         this.setState({loading:true})
         var id = this.props.match.params.id;
@@ -189,7 +186,7 @@ export default class ContentView extends React.Component {
             
             <div className='container'>
                 
-                <Link to={'/contents/'+this.props.match.params.type}>Back</Link>
+                <Link to={'/contents/'+this.props.match.params.type} onClick={this.isReaded}>Back</Link>
                 {
                     
                     this.state.item.map(
@@ -198,8 +195,8 @@ export default class ContentView extends React.Component {
                                 <center>
                                     <h1>{res.title}</h1>
                                             <div>
-                                                <button onClick={this.likeIt} >Like it ({res.voteUp})</button>{' '}
-                                                <button onClick={this.unLikeIt} >Unlike it ({res.voteDown})</button>
+                                                <button className='btn btn-primary'  onClick={this.likeIt} ><i className="fas fa-thumbs-up"></i> Like it ({res.voteUp})</button>{' '}
+                                                <button className='btn btn-dark' onClick={this.unLikeIt} ><i className="fas fa-thumbs-down"></i> Unlike it ({res.voteDown})</button>
                                             </div>
                                     
                                 </center>
@@ -216,13 +213,13 @@ export default class ContentView extends React.Component {
                                     this.state.loggedAs != 'visitor'
                                     ?
                                         <center>
-                                            <button onClick={this.openModal}>Edit</button>{' '}
-                                            <button onClick={
+                                            <button className='btn btn-warning' onClick={this.openModal}><i className="fas fa-edit"></i> Edit</button>{' '}
+                                            <button className='btn btn-danger' onClick={
                                             () => {
                                                 (window.confirm('Are you sure want to delete this content?')) ? this.deleteFile() : this.cancelDelete()
                                             }
                                             }>
-                                                Remove
+                                                <i className="fas fa-trash-alt"></i> Remove
                                             </button>
                                         </center>
                                     :
@@ -244,12 +241,12 @@ export default class ContentView extends React.Component {
                                             <tbody>
                                             <tr>
                                                 <td><label>Title: </label></td>
-                                                <td><input name="title" defaultValue={res.title} onChange={this.changeToEdit} type='text' required /></td>
+                                                <td><input name="title" className="form-control" defaultValue={res.title} onChange={this.changeToEdit} type='text' required /></td>
                                             </tr>
                                             <tr>
                                                 <td><label>Category: </label></td>
                                                 <td>
-                                                <select name="category" defaultValue={res.category} onChange={this.changeToEdit}>
+                                                <select name="category" className="form-control" defaultValue={res.category} onChange={this.changeToEdit}>
                                                     <option value=""></option>
                                                     {
                                                         this.state.categories.map(
@@ -266,7 +263,7 @@ export default class ContentView extends React.Component {
                                             <tr>
                                                 <td><label>Difficulty: </label></td>
                                                 <td>
-                                                    <select name="difficulty" defaultValue={res.difficulty} onChange={this.changeToEdit}>
+                                                    <select name="difficulty" className="form-control" defaultValue={res.difficulty} onChange={this.changeToEdit}>
                                                         <option value=""></option>
                                                         <option value="basic">Basic</option>
                                                         <option value="intermediate">Intermediate</option>
@@ -277,7 +274,7 @@ export default class ContentView extends React.Component {
                                             <tr>
                                                 <td><label>Type: </label></td>
                                                 <td>
-                                                    <select name="type" defaultValue={res.type} onChange={this.changeToEdit}>
+                                                    <select name="type" className="form-control" defaultValue={res.type} onChange={this.changeToEdit}>
                                                         <option value=""></option>
                                                         <option value="video">Video</option>
                                                         <option value="audio">Audio</option>
@@ -286,18 +283,18 @@ export default class ContentView extends React.Component {
                                             </tr>
                                             <tr>
                                                 <td><label>Link: </label></td>
-                                                <td><input name="link" type='text' defaultValue={res.link} onChange={this.changeToEdit} /></td>
+                                                <td><input name="link" type='text' className="form-control" defaultValue={res.link} onChange={this.changeToEdit} /></td>
                                             </tr>
                                             <tr>
                                                 <td><label>Description: </label></td>
-                                                <td> <textarea className='editTexterea' name="description" onChange={this.changeToEdit} defaultValue={res.description}/></td>
+                                                <td> <textarea className='form-control editTexterea' name="description" onChange={this.changeToEdit} defaultValue={res.description}/></td>
                                             </tr>
                                             </tbody>
                                         </table>
                                     </form>
                                     <br /><hr />
-                                    <button onClick={this.closeModal}>close</button>
-                                    <button onClick={this.editContentConfirm}>Edit this</button>
+                                    <button onClick={this.closeModal} className='btn btn-danger'>close</button>{'  '}
+                                    <button className='btn btn-warning' onClick={this.editContentConfirm}>Edit</button>
                                     
                                 </Modal>
                             </div>
