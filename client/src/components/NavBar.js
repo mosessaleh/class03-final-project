@@ -45,7 +45,7 @@ export default class NavBar extends React.Component {
 
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto">
-                            <Link className='nav-link' to='/'>Home</Link>
+                            <Link className='nav-link' to='/'><i className='fa fa-home'></i> Home</Link>
                             <Link className='nav-link' to='/contents'>Contents</Link>
                             {
                                 this.state.loggedAs != 'visitor'

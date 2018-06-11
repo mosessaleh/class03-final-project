@@ -38,9 +38,9 @@ export default class Contents extends React.Component {
                                         <table>
                                             <tbody>
                                                 <tr>
-                                                    <td>Readed</td>
-                                                    <td>Like</td>
-                                                    <td>Unlike</td>
+                                                    <td><i className="fas fa-eye" title='Readed'></i></td>
+                                                    <td><i className="fas fa-thumbs-up" title='Like'></i></td>
+                                                    <td><i className="fas fa-thumbs-down" title='Unlike'></i></td>
                                                 </tr>
                                                 <tr>
                                                     <td>{item.readed}</td>
